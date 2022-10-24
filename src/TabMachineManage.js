@@ -1,4 +1,4 @@
-export default class TapMachineManage {
+export default class TabMachineManage {
 	constructor() {
 		this.coinList = [
 			{ type: 500, quantity: 0 },

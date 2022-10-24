@@ -1,4 +1,4 @@
-export default class TapProductPurchase {
+export default class TabProductPurchase {
 	constructor() {
 		this.productList = [{ name: '더미', price: 1000, quantity: 10 }]
 		this.coinList = [

@@ -4,9 +4,9 @@ class VendingMachine {
 	}
 
 	render() {
-		document.querySelector('#app').insertAdjacentHTML('afterbegin', this.getTapTemplate())
+		document.querySelector('#app').insertAdjacentHTML('afterbegin', this.getTabTemplate())
 	}
-	getTapTemplate() {
+	getTabTemplate() {
 		return `        
     <h2>자판기 만들기🧃</h2>
     <nav id='nav-menu'>    

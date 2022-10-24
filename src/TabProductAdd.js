@@ -1,4 +1,4 @@
-export default class TapProductAdd {
+export default class TabProductAdd {
 	constructor() {
 		this.productList = []
 		this.render()
