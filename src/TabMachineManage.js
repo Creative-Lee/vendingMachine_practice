@@ -6,21 +6,15 @@ export default class TabMachineManage {
 			{ type: 50, quantity: 0 },
 			{ type: 10, quantity: 0 },
 		]
-		this.render()
-	}
-
-	render() {
-		document.querySelector('#app').insertAdjacentHTML('beforeend', this.getTemplate())
 	}
 
 	getTemplate() {
-		return `
-    <main id='main-content'>   
+		return `      
       <div>
         <h3>자판기 동전 충전하기</h3>        
         <input id='vending-machine-charge-input' placeholder='금액' type='number'></input>
         <button id='vending-machine-charge-button'>충전하기</button>        
-        <span id='vending-machine-charge-amount'>보유금액: 0원</span>
+        <h4 id='vending-machine-charge-amount'>보유금액: 0원</h4>
       </div>
       <div>
       <h3>동전 보유 현황</h3>
@@ -40,8 +34,7 @@ export default class TabMachineManage {
 						})
 						.join('')}
         </table>
-      </div>
-    </main>     
+      </div>        
     `
 	}
 }

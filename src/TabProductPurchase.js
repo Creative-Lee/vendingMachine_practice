@@ -7,21 +7,15 @@ export default class TabProductPurchase {
 			{ type: 50, quantity: 0 },
 			{ type: 10, quantity: 0 },
 		]
-		this.render()
-	}
-
-	render() {
-		document.querySelector('#app').insertAdjacentHTML('beforeend', this.getTemplate())
 	}
 
 	getTemplate() {
-		return `
-    <main id='main-content'>   
+		return `     
       <div>
         <h3>금액 투입</h3>        
         <input id='charge-input' placeholder='금액' type='number'></input>
         <button id='charge-button'>투입하기</button>        
-        <span id='charge-amount'>투입한 금액: 0원</span>
+        <h4 id='charge-amount'>투입한 금액: 0원</h4>
       </div>
       <div>
         <h3>구매할 수 있는 상품 현황</h3>
@@ -65,8 +59,7 @@ export default class TabProductPurchase {
 						})
 						.join('')}
         </table>
-      </div>
-    </main>     
+      </div>      
     `
 	}
 }

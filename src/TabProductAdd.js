@@ -1,16 +1,10 @@
 export default class TabProductAdd {
 	constructor() {
 		this.productList = []
-		this.render()
-	}
-
-	render() {
-		document.querySelector('#app').insertAdjacentHTML('beforeend', this.getTemplate())
 	}
 
 	getTemplate() {
-		return `
-    <main id='main-content'>   
+		return `       
       <div>
         <h3>상품 추가하기</h3>        
         <input id='product-name-input' placeholder='상품명' type='text'></input>
@@ -38,8 +32,7 @@ export default class TabProductAdd {
 						})
 						.join('')}                     
         </table>
-      </div>
-    </main>     
+      </div>       
     `
 	}
 }
