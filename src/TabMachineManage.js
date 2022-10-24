@@ -17,11 +17,9 @@ export default class TabMachineManage {
 		return `
     <main id='main-content'>   
       <div>
-        <h3>자판기 동전 충전하기</h3>
-        <form>
-          <input id='vending-machine-charge-input' placeholder='금액' type='number'></input>
-          <button id='vending-machine-charge-button'>충전하기</button>
-        </form>
+        <h3>자판기 동전 충전하기</h3>        
+        <input id='vending-machine-charge-input' placeholder='금액' type='number'></input>
+        <button id='vending-machine-charge-button'>충전하기</button>        
         <span id='vending-machine-charge-amount'>보유금액: 0원</span>
       </div>
       <div>

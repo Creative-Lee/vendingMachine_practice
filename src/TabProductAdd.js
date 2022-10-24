@@ -12,13 +12,11 @@ export default class TabProductAdd {
 		return `
     <main id='main-content'>   
       <div>
-        <h3>상품 추가하기</h3>
-        <form>
-          <input id='product-name-input' placeholder='상품명' type='text'></input>
-          <input id='product-price-input' placeholder='가격' type='number'></input>
-          <input id='product-quantity-input' placeholder='수량' type='number'></input>
-          <button id='product-add-button'>추가하기</button>
-        </form>
+        <h3>상품 추가하기</h3>        
+        <input id='product-name-input' placeholder='상품명' type='text'></input>
+        <input id='product-price-input' placeholder='가격' type='number'></input>
+        <input id='product-quantity-input' placeholder='수량' type='number'></input>
+        <button id='product-add-button'>추가하기</button>        
       </div>
       <div>
       <h3>상품 현황</h3>

@@ -18,11 +18,9 @@ export default class TabProductPurchase {
 		return `
     <main id='main-content'>   
       <div>
-        <h3>금액 투입</h3>
-        <form>
-          <input id='charge-input' placeholder='금액' type='number'></input>
-          <button id='charge-button'>투입하기</button>
-        </form>
+        <h3>금액 투입</h3>        
+        <input id='charge-input' placeholder='금액' type='number'></input>
+        <button id='charge-button'>투입하기</button>        
         <span id='charge-amount'>투입한 금액: 0원</span>
       </div>
       <div>
