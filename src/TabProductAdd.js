@@ -1,6 +1,6 @@
 export default class TabProductAdd {
-	constructor() {
-		this.productList = []
+	constructor(productList) {
+		this.productList = productList
 	}
 
 	getTemplate() {

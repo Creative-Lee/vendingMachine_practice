@@ -4,12 +4,13 @@ import TabProductPurchase from './TabProductPurchase.js'
 
 class VendingMachine {
 	constructor() {
-		this.render()
-		this.initEventListener()
-		this.productAddTab = new TabProductAdd()
+		this.productList = []
+		this.productAddTab = new TabProductAdd(this.productList)
 		this.machineManageTab = new TabMachineManage()
 		this.productPurchaseTab = new TabProductPurchase()
+		this.render()
 		this.renderTabContent('product-add-menu')
+		this.initEventListener()
 	}
 
 	render() {
@@ -29,8 +30,11 @@ class VendingMachine {
 	initEventListener() {
 		document.querySelector('#nav-menu').addEventListener('click', ({ target }) => {
 			if (target.tagName !== 'BUTTON') return
-			const tabId = target.id
-			this.renderTabContent(tabId)
+			this.renderTabContent(target.id)
+		})
+		document.querySelector('#main-content').addEventListener('click', ({ target }) => {
+			if (target.id !== 'product-add-button') return
+			this.addProduct(target)
 		})
 	}
 
@@ -41,6 +45,11 @@ class VendingMachine {
 		if (tabId === 'product-purchase-menu') targetTab = this.productPurchaseTab
 
 		document.querySelector('#main-content').innerHTML = targetTab.getTemplate()
+	}
+	addProduct(target) {
+		const [name, price, quantity] = [...target.parentElement.querySelectorAll('input')].map(input => input.value)
+		this.productList.push({ name, price, quantity })
+		this.renderTabContent('product-add-menu')
 	}
 }
 
