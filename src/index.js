@@ -1,6 +1,7 @@
 import TabProductAdd from './TabProductAdd.js'
 import TabMachineManage from './TabMachineManage.js'
 import TabProductPurchase from './TabProductPurchase.js'
+import { $ } from './utils/dom.js'
 
 class VendingMachine {
 	constructor() {
@@ -14,7 +15,7 @@ class VendingMachine {
 	}
 
 	render() {
-		document.querySelector('#app').insertAdjacentHTML('afterbegin', this.getTemplate())
+		$('#app').insertAdjacentHTML('afterbegin', this.getTemplate())
 	}
 	getTemplate() {
 		return `        
@@ -28,11 +29,11 @@ class VendingMachine {
     `
 	}
 	initEventListener() {
-		document.querySelector('#nav-menu').addEventListener('click', ({ target }) => {
+		$('#nav-menu').addEventListener('click', ({ target }) => {
 			if (target.tagName !== 'BUTTON') return
 			this.renderTabContent(target.id)
 		})
-		document.querySelector('#main-content').addEventListener('click', ({ target }) => {
+		$('#main-content').addEventListener('click', ({ target }) => {
 			if (target.id !== 'product-add-button') return
 			this.addProduct(target)
 		})
@@ -44,7 +45,7 @@ class VendingMachine {
 		if (tabId === 'vending-machine-manage-menu') targetTab = this.machineManageTab
 		if (tabId === 'product-purchase-menu') targetTab = this.productPurchaseTab
 
-		document.querySelector('#main-content').innerHTML = targetTab.getTemplate()
+		$('#main-content').innerHTML = targetTab.getTemplate()
 	}
 	addProduct(target) {
 		const [name, price, quantity] = [...target.parentElement.querySelectorAll('input')].map(input => input.value)
