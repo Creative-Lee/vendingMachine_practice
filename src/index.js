@@ -1,4 +1,6 @@
 import { $ } from './utils/dom.js'
+import { MAX_NAME_INPUT_LENGTH } from './constants/condition.js'
+import { ERROR_MSG } from './constants/message.js'
 
 class VendingMachine {
 	constructor() {
@@ -9,26 +11,11 @@ class VendingMachine {
 			{ type: 50, quantity: 0 },
 			{ type: 10, quantity: 0 },
 		]
-
-		this.render()
+		this.renderMenu()
 		this.renderTabContent('product-add-menu')
 		this.initEventListener()
 	}
 
-	render() {
-		$('#app').insertAdjacentHTML('afterbegin', this.getTemplate())
-	}
-	getTemplate() {
-		return `        
-    <h2>자판기 만들기🧃</h2>
-    <nav id='nav-menu'>    
-    <button id='product-add-menu'>상품 관리</button>
-    <button id='vending-machine-manage-menu'>잔돈 충전</button>
-    <button id='product-purchase-menu'>상품 구매</button>
-    </nav>
-		<main id='main-content'></main>
-    `
-	}
 	initEventListener() {
 		$('#nav-menu').addEventListener('click', ({ target }) => {
 			if (target.tagName !== 'BUTTON') return
@@ -40,6 +27,21 @@ class VendingMachine {
 		})
 	}
 
+	renderMenu() {
+		$('#app').insertAdjacentHTML('afterbegin', this.getMenuTemplate())
+	}
+	getMenuTemplate() {
+		return `        
+    <h2>자판기 만들기🧃</h2>
+    <nav id='nav-menu'>    
+    <button id='product-add-menu'>상품 관리</button>
+    <button id='vending-machine-manage-menu'>잔돈 충전</button>
+    <button id='product-purchase-menu'>상품 구매</button>
+    </nav>
+		<main id='main-content'></main>
+    `
+	}
+
 	renderTabContent(tabId) {
 		let targetTabTemplate
 		if (tabId === 'product-add-menu') targetTabTemplate = this.getProductAddTabTemplate()
@@ -48,7 +50,6 @@ class VendingMachine {
 
 		$('#main-content').innerHTML = targetTabTemplate
 	}
-
 	getProductAddTabTemplate() {
 		return `       
       <div>
@@ -163,9 +164,31 @@ class VendingMachine {
       </div>      
     `
 	}
-
+	isValidProductName(name) {
+		if (!this.isFilledNameInput(name)) {
+			return { isValid: false, type: 'EMPTY_NAME_INPUT' }
+		}
+		if (!this.isValidNameLength(name)) {
+			return { isValid: false, type: 'TOO_LONG_NAME_INPUT' }
+		}
+		return { isValid: true }
+	}
+	isFilledNameInput(name) {
+		return name.trim().length !== 0
+	}
+	isValidNameLength(name) {
+		return name.trim().length < MAX_NAME_INPUT_LENGTH
+	}
+	showErrorAlert(type) {
+		alert(ERROR_MSG[type])
+	}
 	addProduct(target) {
 		const [name, price, quantity] = [...target.parentElement.querySelectorAll('input')].map(input => input.value)
+		const { isValid, type } = this.isValidProductName(name)
+		if (!isValid) {
+			this.showErrorAlert(type)
+			return
+		}
 		this.productList.push({ name, price, quantity })
 		this.renderTabContent('product-add-menu')
 	}
